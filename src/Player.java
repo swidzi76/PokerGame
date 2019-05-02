@@ -3,10 +3,20 @@ import javafx.util.StringConverter;
 public class Player {
     private String name;
     private boolean button;
+    private int score;
 
     public Player(String name) {
         this.name = name;
         this.button = false;
+        score = 0;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public String getName() {
@@ -27,6 +37,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return getName()+(isButton()?" B ":"");
+        return getName()+(isButton()?" B ":"   ")+getScore();
     }
 }

@@ -20,7 +20,7 @@ public class PokerGame {
         return buttonPlayer;
     }
 
-    public void setButtonPlayer(int buttonPlayer) {
+    private void setButtonPlayer(int buttonPlayer) {
         if(buttonPlayer >= 0 && buttonPlayer <= players.size()){
             players.get(this.buttonPlayer).setButton(false);
             this.buttonPlayer = buttonPlayer;
