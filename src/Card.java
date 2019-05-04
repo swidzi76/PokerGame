@@ -15,6 +15,14 @@ public class Card {
         this.card_value = card_value;
     }
 
+    @Override
+    public String toString() {
+        return "Card{" +
+                "rank='" + rank + '\'' +
+                ", suit='" + suit + '\'' +
+                ", card_value=" + card_value +
+                '}';
+    }
 
     public String getRank() {
         return rank;
