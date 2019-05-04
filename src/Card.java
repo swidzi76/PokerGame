@@ -41,7 +41,7 @@ public class Card {
     }
 
 
-    public void createDeck (ArrayList<Card> deck) {
+    public ArrayList<Card> createDeck () {
 
         Card card1 = new Card("2", "c", 2);
         Card card2 = new Card("2", "d", 2);
@@ -96,60 +96,65 @@ public class Card {
         Card card51 = new Card("A", "h", 14);
         Card card52 = new Card("A", "s", 14);
 
-        List<Card> Deck = new ArrayList<>();
+        ArrayList<Card> deck = new ArrayList<>();
 
-        Deck.add(card1);
-        Deck.add(card2);
-        Deck.add(card3);
-        Deck.add(card4);
-        Deck.add(card5);
-        Deck.add(card6);
-        Deck.add(card7);
-        Deck.add(card8);
-        Deck.add(card9);
-        Deck.add(card10);
-        Deck.add(card11);
-        Deck.add(card12);
-        Deck.add(card13);
-        Deck.add(card14);
-        Deck.add(card15);
-        Deck.add(card16);
-        Deck.add(card17);
-        Deck.add(card18);
-        Deck.add(card19);
-        Deck.add(card20);
-        Deck.add(card21);
-        Deck.add(card22);
-        Deck.add(card23);
-        Deck.add(card24);
-        Deck.add(card25);
-        Deck.add(card26);
-        Deck.add(card27);
-        Deck.add(card28);
-        Deck.add(card29);
-        Deck.add(card30);
-        Deck.add(card31);
-        Deck.add(card32);
-        Deck.add(card33);
-        Deck.add(card34);
-        Deck.add(card35);
-        Deck.add(card36);
-        Deck.add(card37);
-        Deck.add(card38);
-        Deck.add(card39);
-        Deck.add(card40);
-        Deck.add(card41);
-        Deck.add(card42);
-        Deck.add(card43);
-        Deck.add(card44);
-        Deck.add(card45);
-        Deck.add(card46);
-        Deck.add(card47);
-        Deck.add(card48);
-        Deck.add(card49);
-        Deck.add(card50);
-        Deck.add(card51);
-        Deck.add(card52);
+        deck.add(card1);
+        deck.add(card2);
+        deck.add(card3);
+        deck.add(card4);
+        deck.add(card5);
+        deck.add(card6);
+        deck.add(card7);
+        deck.add(card8);
+        deck.add(card9);
+        deck.add(card10);
+        deck.add(card11);
+        deck.add(card12);
+        deck.add(card13);
+        deck.add(card14);
+        deck.add(card15);
+        deck.add(card16);
+        deck.add(card17);
+        deck.add(card18);
+        deck.add(card19);
+        deck.add(card20);
+        deck.add(card21);
+        deck.add(card22);
+        deck.add(card23);
+        deck.add(card24);
+        deck.add(card25);
+        deck.add(card26);
+        deck.add(card27);
+        deck.add(card28);
+        deck.add(card29);
+        deck.add(card30);
+        deck.add(card31);
+        deck.add(card32);
+        deck.add(card33);
+        deck.add(card34);
+        deck.add(card35);
+        deck.add(card36);
+        deck.add(card37);
+        deck.add(card38);
+        deck.add(card39);
+        deck.add(card40);
+        deck.add(card41);
+        deck.add(card42);
+        deck.add(card43);
+        deck.add(card44);
+        deck.add(card45);
+        deck.add(card46);
+        deck.add(card47);
+        deck.add(card48);
+        deck.add(card49);
+        deck.add(card50);
+        deck.add(card51);
+        deck.add(card52);
+        
+        return deck;
 
     }
+    
+    
+    
 }
