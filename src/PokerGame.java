@@ -15,8 +15,6 @@ public class PokerGame {
         }
         this.numberOfPlayers = numberOfplayers;
         this.numberOfHands = numberOfHands;
-        setRandomButtonPlayer();
-
     }
     public void showPlayers(){
         for (Player player : players) {
@@ -26,6 +24,8 @@ public class PokerGame {
     }
     public void play(){
         Deck deck = new Deck();
+        // ustawiamy Buttona
+        setRandomButtonPlayer();
         for (int i = 0; i < this.numberOfHands; i++) {
             // new hands - new deck.
             deck.init();
@@ -46,15 +46,40 @@ public class PokerGame {
             for (int j = 0; j <3 ; j++) {
                 table.cards.add(deck.getCard());
             }
+            System.out.println(" rozdanie nr : "+i);
+            showPlayers();
+
+            //sprawdzamy kto wygrał
+            checkHand();
+            // przesuń rozdającego -> next button
+            setNextButtonPlayer();
+            // usuń karty u graczy
+            clearCardOfPlayers();
         }
     }
 
+    private void checkHand(){
+
+    }
+    private void clearCardOfPlayers(){
+        for (Player player : players) {
+            player.cards.clear();
+        }
+        table.cards.clear();
+    }
     public int getButtonPlayer() {
         return buttonPlayer;
     }
-
+    private void setNextButtonPlayer(){
+        int nr = this.buttonPlayer;
+        nr++;
+        if(nr == this.numberOfPlayers){
+            nr = 0;
+        }
+        setButtonPlayer(nr);
+    }
     private void setButtonPlayer(int buttonPlayer) {
-        if(buttonPlayer >= 0 && buttonPlayer <= players.size()){
+        if(buttonPlayer >= 0 && buttonPlayer < players.size()){
             players.get(this.buttonPlayer).setButton(false);
             this.buttonPlayer = buttonPlayer;
             players.get(buttonPlayer).setButton(true);
