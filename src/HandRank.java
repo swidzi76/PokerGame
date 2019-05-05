@@ -29,72 +29,6 @@ public class HandRank {
         return value;
     }
 
-
-
-    // 5 next cards from Ace to T of the same suit
-    public double poker () {
-
-        double value = 10;
-
-
-
-
-
-
-    // value = value + highestCardRank / 10
-        return value;
-
-    }
-
-    // 4 of the same cards
-    public int fourOfAKind () {
-
-        int value = 8;
-
-        return value;
-    }
-
-    // 3 + 2
-    public int fullHouse () {
-
-        int value = 7;
-
-        return value;
-    }
-
-    // 5 cards of the same suit
-    public int flush () {
-
-        int value = 6;
-
-        return value;
-    }
-
-    // 5 next cards
-    public int streight () {
-
-        int value = 5;
-
-        return value;
-    }
-
-    // 3 the same cards
-    public int threeOfAKind () {
-
-        int value = 4;
-
-        return value;
-    }
-
-    // 2 + 2
-    public int twoPairs () {
-
-        int value = 3;
-
-        return value;
-    }
-
-    // two the same cards
     public double onePair () {
 
         ListOfNumerbOfOccurrennces list = new ListOfNumerbOfOccurrennces();
@@ -115,12 +49,23 @@ public class HandRank {
             System.out.println(cardToCheck.get(i)+ " - "+count);
 
         }
-        list.sort();
+
 
         System.out.println("-------------------------------------------");
         System.out.println(list.toString());
 
+        // sprawdzamy czy jest poker!!!
+
+        list.sortForSuits();
+
+        System.out.println(list.toString());
+
+
+
+
         // sprawdzamy czy jest KARETA!
+
+        list.sort();
 
         if (list.get(0).getNumbersOfOccurennces() == 4) {
 
@@ -129,7 +74,7 @@ public class HandRank {
         }
 
         // sprawdzamy czy jest FULL! xD
-        if (list.get(0).getNumbersOfOccurennces() == 3 && list.get(1).getNumbersOfOccurennces() == 3) {
+        if ((list.get(0).getNumbersOfOccurennces() == 3 && list.get(1).getNumbersOfOccurennces() == 3) || (list.get(0).getNumbersOfOccurennces() == 3 && list.get(1).getNumbersOfOccurennces() == 2)) {
 
             if (list.get(0).getCard().getCard_value() > list.get(1).getCard().getCard_value()) {
                 return value = 7.0 + (list.get(0).getCard().getCard_value() / 100.0);
@@ -145,9 +90,63 @@ public class HandRank {
             return value;
         }
 
+        // sprawdzamy czy są DWIE PARY!!!
+
+        if (list.get(0).getNumbersOfOccurennces() == 2 && list.get(1).getNumbersOfOccurennces() == 2 && list.get(2).getNumbersOfOccurennces() == 2) {
+
+            if (list.get(0).getCard().getCard_value() > list.get(1).getCard().getCard_value() && list.get(0).getCard().getCard_value() > list.get(2).getCard().getCard_value()) {
+                if (list.get(1).getCard().getCard_value() > list.get(2).getCard().getCard_value()) {
+                    return 3.0 + list.get(0).getCard().getCard_value() / 100.0 + list.get(1).getCard().getCard_value() / 10000.0;
+                } else {
+                    return 3.0 + list.get(0).getCard().getCard_value() / 100.0 + list.get(2).getCard().getCard_value() / 10000.0;
+                }
+            }
+
+            if (list.get(1).getCard().getCard_value() > list.get(0).getCard().getCard_value() && list.get(1).getCard().getCard_value() > list.get(2).getCard().getCard_value()) {
+                if (list.get(0).getCard().getCard_value() > list.get(2).getCard().getCard_value()) {
+                    return 3.0 + list.get(1).getCard().getCard_value() / 100.0 + list.get(0).getCard().getCard_value() / 10000.0;
+                } else {
+                    return 3.0 + list.get(1).getCard().getCard_value() / 100.0 + list.get(2).getCard().getCard_value() / 10000.0;
+                }
+            }
+
+            if (list.get(2).getCard().getCard_value() > list.get(0).getCard().getCard_value() && list.get(2).getCard().getCard_value() > list.get(1).getCard().getCard_value()) {
+                if (list.get(0).getCard().getCard_value() > list.get(1).getCard().getCard_value()) {
+                    return 3.0 + list.get(2).getCard().getCard_value() / 100.0 + list.get(0).getCard().getCard_value() / 10000.0;
+                } else {
+                    return 3.0 + list.get(2).getCard().getCard_value() / 100.0 + list.get(1).getCard().getCard_value() / 10000.0;
+                }
+            }
 
 
-        return value;
+        }
+
+        if (list.get(0).getNumbersOfOccurennces() == 2 && list.get(1).getNumbersOfOccurennces() == 2) {
+            if (list.get(0).getCard().getCard_value() > list.get(1).getCard().getCard_value()) {
+                return 3.0 + list.get(0).getCard().getCard_value() / 100.0 + list.get(1).getCard().getCard_value() / 10000.0;
+            } else {
+                return 3.0 + list.get(1).getCard().getCard_value() / 100.0 + list.get(0).getCard().getCard_value() / 10000.0;
+            }
+        }
+
+        // sprawdzamy czy jest 1 PARA!!! xD :D XOXOXOXOXOXXOXO :*
+
+        if (list.get(0).getNumbersOfOccurennces() == 2) {
+            return 2.0 + list.get(0).getCard().getCard_value() / 100.0;
+        }
+
+        // szukamy karty o maksytmalnej wartości w tablicy gdzie ilość wystąpień dla każdej karty = 1
+
+        int max = 0;
+
+        for (int i = 0; i < list.size(); i++) {
+
+            if (list.get(i).getCard().getCard_value() >  max) {
+                max = list.get(i).getCard().getCard_value();
+            }
+        }
+
+        return 1 + max / 100.0;
     }
 
     // the highest value of card in hand

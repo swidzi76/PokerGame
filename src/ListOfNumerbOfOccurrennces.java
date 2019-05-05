@@ -30,6 +30,18 @@ public class ListOfNumerbOfOccurrennces {
         Collections.sort(list, NumbersOfOccurennces.NumberOfOccirenncesComparator);
     }
 
+    public void sortForSuits () {
+
+        Collections.sort(list, NumbersOfOccurennces.SuitsComparator);
+    }
+
+    public void sortForValue () {
+
+        Collections.sort(list, NumbersOfOccurennces.ValueComparator);
+    }
+
+
+
     public NumbersOfOccurennces get (int i) {
 
         if (i < 0 && i >= list.size()) {
@@ -37,4 +49,10 @@ public class ListOfNumerbOfOccurrennces {
         }
         return list.get(i);
     }
+
+    public int size () {
+        return list.size();
+    }
+
+
 }
