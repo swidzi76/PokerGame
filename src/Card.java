@@ -1,8 +1,21 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Card {
+
+    public static Comparator<Card> CardComparator = new Comparator<Card>() {
+
+        public int compare(Card c1, Card c2) {
+            Integer value1 = c1.getCard_value();
+            Integer value2 = c2.getCard_value();
+
+
+            //ascending order
+            return value1.compareTo(value2);
+
+        }};
 
     private String rank; // 2,3,4,5,6,7,8,9,T,J,Q,K,A
     private  String suit; // c - clubs, h - hearts, s - spades, d - diamonds
@@ -162,7 +175,6 @@ public class Card {
         return deck;
 
     }
-    
-    
-    
+
+
 }

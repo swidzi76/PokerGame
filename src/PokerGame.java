@@ -60,6 +60,13 @@ public class PokerGame {
 
     private void checkHand(){
 
+        HandRank handRank = new HandRank();
+
+        for (int i = 0; i <numberOfPlayers; i++) {
+
+            handRank.checkHand(players.get(i).cards, table.cards);
+
+        }
     }
     private void clearCardOfPlayers(){
         for (Player player : players) {

@@ -35,7 +35,7 @@ public class Deck {
             switch (value) {
                 case 10: {rank = "T"; break;}
                 case 11: {rank = "J"; break;}
-                case 12: {rank = "D"; break;}
+                case 12: {rank = "Q"; break;}
                 case 13: {rank = "K"; break;}
                 case 14: {rank = "A"; break;}
                 default: rank = String.valueOf(value);
