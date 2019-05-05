@@ -6,10 +6,11 @@ public class HandRank {
 
 
     // 5 next cards from Ace to T of the same suit
-    public int royalFlush (ArrayList<Deck> hand) {
+    public int royalFlush (ArrayList<Deck> hand, ArrayList<Deck> table) {
 
         int value = 10;
 
+        hand.addAll(table);
 
 
 
