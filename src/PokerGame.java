@@ -42,8 +42,8 @@ public class PokerGame {
                     players.get(nr).cards.add(deck.getCard());
                 }
             }
-            // teraz 3 karty na stół
-            for (int j = 0; j <3 ; j++) {
+            // teraz 5 karty na stół
+            for (int j = 0; j <5 ; j++) {
                 table.cards.add(deck.getCard());
             }
             System.out.println(" rozdanie nr : "+i);
