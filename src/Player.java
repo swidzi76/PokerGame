@@ -1,9 +1,12 @@
 import javafx.util.StringConverter;
 
+import java.util.ArrayList;
+
 public class Player {
     private String name;
     private boolean button;
     private int score;
+    ArrayList<Card> cards = new ArrayList<>();
 
     public Player(String name) {
         this.name = name;
@@ -35,8 +38,15 @@ public class Player {
         this.button = button;
     }
 
+    private String getCadrds(){
+        String string ="";
+        for (Card card : cards) {
+            string += "["+card.getRank()+ ":"+card.getSuit()+"]";
+        }
+        return string;
+    }
     @Override
     public String toString() {
-        return getName()+(isButton()?" B ":"   ")+getScore();
+        return getName()+(isButton()?" B ":"   ")+getScore()+getCadrds();
     }
 }
