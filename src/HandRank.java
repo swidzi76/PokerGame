@@ -50,15 +50,40 @@ public class HandRank {
 
         }
 
-
+        list.sort();    // sortowanie po value
         System.out.println("-------------------------------------------");
         System.out.println(list.toString());
 
         // sprawdzamy czy jest poker!!!
+        // liczymy ile jest wystąpień danego koloru
+        // c - clubs, h - hearts, s - spades, d - diamonds
+        int numC = 0;
+        int numH = 0;
+        int numS = 0;
+        int numD = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getCard().getSuit() == "c"){
+                numC++;
+            }
+            if(list.get(i).getCard().getSuit() == "h"){
+                numH++;
+            }
+            if(list.get(i).getCard().getSuit() == "s"){
+                numS++;
+            }
+            if(list.get(i).getCard().getSuit() == "d"){
+                numD++;
+            }
+        }
 
-        list.sortForSuits();
+        System.out.println("liczba wystąpień c:"+numC+ " h:"+numH+ " s:"+numS+" d:"+numD);
+        if(numC > 4 || numH > 4 || numS > 4 || numD > 4){
+            // mamy kolor - jeżeli karty po kolei to poker
 
-        System.out.println(list.toString());
+        }
+        //list.sortForSuits();
+
+//        System.out.println(list.toString());
 
 
 
