@@ -7,6 +7,10 @@ public class Main {
 //        game.play();
         //game.showPlayers();
 
+        // BARTKU
+        // przerób projekt na maven'a
+        // i zrób testy dla wszytkich mozliwych wyników
+        // czyli poker, kareta, full, Kolor itd
         ArrayList<Card> testCardsPlayer = new ArrayList<>();
 
         testCardsPlayer.add(new Card("K", "d", 13));
@@ -17,7 +21,7 @@ public class Main {
         testCardsTable.add(new Card("4", "s", 4));
         testCardsTable.add(new Card("5", "s", 5));
         testCardsTable.add(new Card("2", "s", 2));
-        testCardsTable.add(new Card("6", "s", 6));
+        testCardsTable.add(new Card("7", "s", 7));
         testCardsTable.add(new Card("7", "h", 7));
 
 
