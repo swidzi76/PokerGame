@@ -50,6 +50,7 @@ public class HandRank {
 
         }
 
+        // obiekt list zawiera kolekcje: karta - liczba występeń
         list.sort();    // sortowanie po value
         System.out.println("-------------------------------------------");
         System.out.println(list.toString());
@@ -77,14 +78,28 @@ public class HandRank {
         }
 
         System.out.println("liczba wystąpień c:"+numC+ " h:"+numH+ " s:"+numS+" d:"+numD);
-        if(numC > 4 || numH > 4 || numS > 4 || numD > 4){
-            // mamy kolor - jeżeli karty po kolei to poker
+        if(numC > 4){ return checkPokerOrColor(list,"c"); }        // jeżeli 5 lub więcej pików
+        if(numH > 4){ return checkPokerOrColor(list,"h"); }        // jeżeli 5 lub więcej serc
+        if(numS > 4){ return checkPokerOrColor(list,"s"); }        // jeżeli 5 lub więcej krzyże
+        if(numD > 4){ return checkPokerOrColor(list,"d"); }        // jeżeli 5 lub więcej karo
 
+        // sprawdzamy czy jest STRIT - pięć kart po kolei wg. value.
+        // list posortowany po value
+        int numberCard = 1;
+        Card maxCard = null;
+        for (int i = 0; i < list.size()-1; i++) {
+            if(list.get(i).getCard().getCard_value() == list.get(i+1).getCard().getCard_value()-1){
+                maxCard = list.get(i+1).getCard();
+                numberCard++;
+            }else{
+                maxCard = null;
+                numberCard=1;
+            }
         }
-        //list.sortForSuits();
-
-//        System.out.println(list.toString());
-
+        // jeżeli mamy 5 kart po kolei to STRIT
+        if (numberCard == 5) {
+            return 5.0 + maxCard.getCard_value() / 100.0;
+        }
 
 
 
@@ -172,6 +187,28 @@ public class HandRank {
         }
 
         return 1 + max / 100.0;
+    }
+    private double checkPokerOrColor(ListOfNumerbOfOccurrennces list, String s){
+        double value = 0.0;
+        // list posortowany po value
+        for (int i = list.size()-1; i >=0 ; i--) {
+            if (list.get(i).getCard().getSuit().equals(s)){
+                // jeżeli znaleźliśmy najstarszą kartę o danym suits to sprawdzamy czy kolejne 4 sa po kolei
+                value = list.get(i).getCard().getCard_value() / 100.0;  // zapamiętujemy wartość najstarszej karty
+                int tempValue = list.get(i).getCard().getCard_value();
+                for (int j = i-1; j >= (i-4) ; j--) {
+                    if(tempValue-1 != list.get(j).getCard().getCard_value()){
+                        // mamy kolor !!!!
+                        return value + 6.0; ////// WARTOŚĆ DLA KOLORU
+                    }
+                    tempValue = list.get(j).getCard().getCard_value();
+                }
+                // jest 5 kart po kolei w jedym kolorze - mamay POKERA
+                return value + 9.0; // WARTOŚĆ DLA POKERA
+            }
+        }
+
+        return value;
     }
 
     // the highest value of card in hand
