@@ -1,3 +1,5 @@
+package poker;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,7 +13,7 @@ public class PokerGame {
 
     public PokerGame(int numberOfplayers, int numberOfHands) {
         for (int i = 0; i < numberOfplayers; i++) {
-            players.add(new Player("Player "+(i)));
+            players.add(new Player("poker.Player "+(i)));
         }
         this.numberOfPlayers = numberOfplayers;
         this.numberOfHands = numberOfHands;

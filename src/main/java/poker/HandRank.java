@@ -1,4 +1,5 @@
-import java.lang.reflect.Array;
+package poker;
+
 import java.util.*;
 
 public class HandRank {

@@ -1,6 +1,7 @@
+package poker;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class Deck {
@@ -53,8 +54,8 @@ public class Deck {
             if (nrSuit == 5) nrSuit = 1;
             if (i % 4 == 0) value++;
         }
-//        System.out.println("Deck z init, liczba kart : " + cards.size());
-//        for (Card card : cards) {
+//        System.out.println("poker.Deck z init, liczba kart : " + cards.size());
+//        for (poker.Card card : cards) {
 //            System.out.println(card);
 //        }
     }

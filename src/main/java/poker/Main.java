@@ -1,9 +1,10 @@
+package poker;
+
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Main {
     public static void main(String[] args) {
-//        PokerGame game = new PokerGame(5,1);
+//        poker.PokerGame game = new poker.PokerGame(5,1);
 //        game.play();
         //game.showPlayers();
 

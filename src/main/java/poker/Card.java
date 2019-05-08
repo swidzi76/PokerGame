@@ -1,7 +1,7 @@
-import java.lang.reflect.Array;
+package poker;
+
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
 public class Card {
 
@@ -30,7 +30,7 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
+        return "poker.Card{" +
                 "rank='" + rank + '\'' +
                 ", suit='" + suit + '\'' +
                 ", card_value=" + card_value +
