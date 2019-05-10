@@ -12,6 +12,8 @@ public class Main {
         // przerób projekt na maven'a
         // i zrób testy dla wszytkich mozliwych wyników
         // czyli poker, kareta, full, Kolor itd.
+
+
         ArrayList<Card> testCardsPlayer = new ArrayList<>();
 
         testCardsPlayer.add(new Card("K", "d", 13));

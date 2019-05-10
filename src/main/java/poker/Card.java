@@ -30,10 +30,10 @@ public class Card {
 
     @Override
     public String toString() {
-        return "poker.Card{" +
-                "rank='" + rank + '\'' +
-                ", suit='" + suit + '\'' +
-                ", card_value=" + card_value +
+        return "{" +
+                "r='" + rank + '\'' +
+                ", s='" + suit + '\'' +
+                ", v=" + card_value +
                 '}';
     }
 

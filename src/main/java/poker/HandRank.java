@@ -2,6 +2,8 @@ package poker;
 
 import java.util.*;
 
+import static java.lang.Math.round;
+
 public class HandRank {
 
     private ArrayList<Card> cardToCheck;
@@ -21,11 +23,11 @@ public class HandRank {
 
         Collections.sort(cardToCheck, Card.CardComparator);
 
-        System.out.println("--------------------------------------------------------------------");
+        System.out.println("---- kolekcja wejsciowa hand + table - cardToCheck --------------------");
         System.out.println(cardToCheck);
 
         value = onePair();
-
+        System.out.println("value = "+value);
 
         return value;
     }
@@ -47,13 +49,13 @@ public class HandRank {
                 }
             }
             list.add(cardToCheck.get(i), count);
-            System.out.println(cardToCheck.get(i)+ " - "+count);
+//            System.out.println(cardToCheck.get(i)+ " - "+count);
 
         }
 
         // obiekt list zawiera kolekcje: karta - liczba występeń
         list.sort();    // sortowanie po value
-        System.out.println("-------------------------------------------");
+        System.out.println("-- posortowana kolekcja list  LICZBA WYSTĄPIEń  -----------------");
         System.out.println(list.toString());
 
         // sprawdzamy czy jest poker!!!
@@ -63,17 +65,17 @@ public class HandRank {
         int numH = 0;
         int numS = 0;
         int numD = 0;
-        for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getCard().getSuit() == "c"){
+        for (int i = 0; i < cardToCheck.size(); i++) {
+            if( cardToCheck.get(i).getSuit().equals("c")){
                 numC++;
             }
-            if(list.get(i).getCard().getSuit() == "h"){
+            if(cardToCheck.get(i).getSuit().equals("h")){
                 numH++;
             }
-            if(list.get(i).getCard().getSuit() == "s"){
+            if(cardToCheck.get(i).getSuit().equals("s")){
                 numS++;
             }
-            if(list.get(i).getCard().getSuit() == "d"){
+            if(cardToCheck.get(i).getSuit().equals("d")){
                 numD++;
             }
         }
@@ -86,6 +88,7 @@ public class HandRank {
 
         // sprawdzamy czy jest STRIT - pięć kart po kolei wg. value.
         // list posortowany po value
+
         int numberCard = 1;
         Card maxCard = null;
         for (int i = 0; i < list.size()-1; i++) {
@@ -96,10 +99,10 @@ public class HandRank {
                 maxCard = null;
                 numberCard=1;
             }
-        }
-        // jeżeli mamy 5 kart po kolei to STRIT
-        if (numberCard == 5) {
-            return 5.0 + maxCard.getCard_value() / 100.0;
+            // jeżeli mamy 5 kart po kolei to STRIT
+            if (numberCard == 5) {
+                return 5.0 + maxCard.getCard_value() / 100.0;
+            }
         }
 
 
@@ -137,25 +140,25 @@ public class HandRank {
 
             if (list.get(0).getCard().getCard_value() > list.get(1).getCard().getCard_value() && list.get(0).getCard().getCard_value() > list.get(2).getCard().getCard_value()) {
                 if (list.get(1).getCard().getCard_value() > list.get(2).getCard().getCard_value()) {
-                    return 3.0 + list.get(0).getCard().getCard_value() / 100.0 + list.get(1).getCard().getCard_value() / 10000.0;
+                    return round4(3.0 + list.get(0).getCard().getCard_value() / 100.0 + list.get(1).getCard().getCard_value() / 10000.0);
                 } else {
-                    return 3.0 + list.get(0).getCard().getCard_value() / 100.0 + list.get(2).getCard().getCard_value() / 10000.0;
+                    return round4(3.0 + list.get(0).getCard().getCard_value() / 100.0 + list.get(2).getCard().getCard_value() / 10000.0);
                 }
             }
 
             if (list.get(1).getCard().getCard_value() > list.get(0).getCard().getCard_value() && list.get(1).getCard().getCard_value() > list.get(2).getCard().getCard_value()) {
                 if (list.get(0).getCard().getCard_value() > list.get(2).getCard().getCard_value()) {
-                    return 3.0 + list.get(1).getCard().getCard_value() / 100.0 + list.get(0).getCard().getCard_value() / 10000.0;
+                    return round4(3.0 + list.get(1).getCard().getCard_value() / 100.0 + list.get(0).getCard().getCard_value() / 10000.0);
                 } else {
-                    return 3.0 + list.get(1).getCard().getCard_value() / 100.0 + list.get(2).getCard().getCard_value() / 10000.0;
+                    return round4(3.0 + list.get(1).getCard().getCard_value() / 100.0 + list.get(2).getCard().getCard_value() / 10000.0);
                 }
             }
 
             if (list.get(2).getCard().getCard_value() > list.get(0).getCard().getCard_value() && list.get(2).getCard().getCard_value() > list.get(1).getCard().getCard_value()) {
                 if (list.get(0).getCard().getCard_value() > list.get(1).getCard().getCard_value()) {
-                    return 3.0 + list.get(2).getCard().getCard_value() / 100.0 + list.get(0).getCard().getCard_value() / 10000.0;
+                    return round4(3.0 + list.get(2).getCard().getCard_value() / 100.0 + list.get(0).getCard().getCard_value() / 10000.0);
                 } else {
-                    return 3.0 + list.get(2).getCard().getCard_value() / 100.0 + list.get(1).getCard().getCard_value() / 10000.0;
+                    return round4(3.0 + list.get(2).getCard().getCard_value() / 100.0 + list.get(1).getCard().getCard_value() / 10000.0);
                 }
             }
 
@@ -164,9 +167,9 @@ public class HandRank {
 
         if (list.get(0).getNumbersOfOccurennces() == 2 && list.get(1).getNumbersOfOccurennces() == 2) {
             if (list.get(0).getCard().getCard_value() > list.get(1).getCard().getCard_value()) {
-                return 3.0 + list.get(0).getCard().getCard_value() / 100.0 + list.get(1).getCard().getCard_value() / 10000.0;
+                return round4(3.0 + list.get(0).getCard().getCard_value() / 100.0 + list.get(1).getCard().getCard_value() / 10000.0);
             } else {
-                return 3.0 + list.get(1).getCard().getCard_value() / 100.0 + list.get(0).getCard().getCard_value() / 10000.0;
+                return round4(3.0 + list.get(1).getCard().getCard_value() / 100.0 + list.get(0).getCard().getCard_value() / 10000.0);
             }
         }
 
@@ -192,23 +195,62 @@ public class HandRank {
     private double checkPokerOrColor(ListOfNumerbOfOccurrennces list, String s){
         double value = 0.0;
         // list posortowany po value
-        for (int i = list.size()-1; i >=0 ; i--) {
-            if (list.get(i).getCard().getSuit().equals(s)){
-                // jeżeli znaleźliśmy najstarszą kartę o danym suits to sprawdzamy czy kolejne 4 sa po kolei
-                value = list.get(i).getCard().getCard_value() / 100.0;  // zapamiętujemy wartość najstarszej karty
-                int tempValue = list.get(i).getCard().getCard_value();
-                for (int j = i-1; j >= (i-4) ; j--) {
-                    if(tempValue-1 != list.get(j).getCard().getCard_value()){
-                        // mamy kolor !!!!
-                        return value + 6.0; ////// WARTOŚĆ DLA KOLORU
-                    }
-                    tempValue = list.get(j).getCard().getCard_value();
-                }
-                // jest 5 kart po kolei w jedym kolorze - mamay POKERA
-                return value + 9.0; // WARTOŚĆ DLA POKERA
+        // badamy kolekcję cardToCheck
+        ArrayList<Card>  tempList = new ArrayList<>();
+        for (int i = 0; i < cardToCheck.size(); i++) {
+            if(cardToCheck.get(i).getSuit().equals(s)){
+                tempList.add(cardToCheck.get(i));
             }
         }
+        // w tempList mamy tylko karty o jednym kolorzei i jest ich conajmniej 5
+        // sotrujemy tempList po value
+        Collections.sort(tempList, Card.CardComparator);
+        System.out.println("--- lista tempList z posortowanymi kartamiw jednym kolorze -----");
+        System.out.println(tempList);
 
+        if(tempList.size() == 5){
+            if((tempList.get(0).getCard_value() + 4) == tempList.get(4).getCard_value()){
+                // mamy POKERA
+                return 9.0 + tempList.get(4).getCard_value() / 100.0;
+            }else{
+                // mamy KOLOR
+                return 6.0 + tempList.get(4).getCard_value() / 100.0;
+            }
+        }
+        if(tempList.size() == 6){
+            if((tempList.get(0).getCard_value() + 4) == tempList.get(4).getCard_value()){
+                // mamy POKERA
+                return 9.0 + tempList.get(4).getCard_value() / 100.0;
+            }
+
+            if((tempList.get(1).getCard_value() + 4) == tempList.get(5).getCard_value()){
+                // mamy POKERA
+                return 9.0 + tempList.get(5).getCard_value() / 100.0;
+            }else{
+                // mamy KOLOR
+                return 6.0 + tempList.get(5).getCard_value() / 100.0;
+            }
+
+        }
+        if(tempList.size() == 7){
+            if((tempList.get(0).getCard_value() + 4) == tempList.get(4).getCard_value()){
+                // mamy POKERA
+                return 9.0 + tempList.get(4).getCard_value() / 100.0;
+            }
+            if((tempList.get(1).getCard_value() + 4) == tempList.get(5).getCard_value()){
+                // mamy POKERA
+                return 9.0 + tempList.get(5).getCard_value() / 100.0;
+            }
+
+            if((tempList.get(2).getCard_value() + 4) == tempList.get(6).getCard_value()){
+                // mamy POKERA
+                return 9.0 + tempList.get(6).getCard_value() / 100.0;
+            }else{
+                // mamy KOLOR
+                return 6.0 + tempList.get(6).getCard_value() / 100.0;
+            }
+
+        }
         return value;
     }
 
@@ -219,6 +261,10 @@ public class HandRank {
 
         return value;
     }
+    private double round4(double d){
+        double d1 = d * 10000.0;
 
+        return round(d1) / 10000.0;
+    }
 
 }
